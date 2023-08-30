@@ -5,10 +5,11 @@ using UnityEngine.UIElements;
 
 public class Monster_Controler : MonoBehaviour
 {
-    public GameObject[] Monster_Prefabs;//怪物预制体
+    public GameObject[] Monster_Prefabs;//怪物预制体  bat ghost rabbit slime
     public Transform[] SwapPoint ;//生成位置
     public int MaxNumOfMonster = 10;//最大怪物数量
     public float RebotTime = 3.0f;//生成间隔
+    public int DestroyTime = 5;//摧毁间隙
     
 
     private GameObject Targetcounter;
@@ -41,19 +42,31 @@ public class Monster_Controler : MonoBehaviour
         SwapPoint = new Transform[] { customRebotPoint1, customRebotPoint2 };*/
         if (Monster_Prefabs.Length > 0 && SwapPoint != null&&SwapPoint.Length>0)
         {
-            int randomIndex_Monster = Random.Range(0, Monster_Prefabs.Length);
-            int randomIndex_SwapPoint = Random.Range(0, SwapPoint.Length);
+            int randomIndex_Monster = Random.Range(0, Monster_Prefabs.Length);//随机怪物
+            int randomIndex_SwapPoint = Random.Range(0, SwapPoint.Length);//随机地点
             Transform Selected_SwapPoint=SwapPoint[randomIndex_SwapPoint];
-            GameObject SelectedMonster=Monster_Prefabs[randomIndex_Monster];
-            Quaternion rotation = Quaternion.Euler(0, 180f, 0);
-            Instantiate(SelectedMonster, Selected_SwapPoint.position,rotation);
+            GameObject SelectedMonster=Monster_Prefabs[randomIndex_Monster];  
+            Quaternion rotation = Quaternion.Euler(0, 180f, 0);//方向调整
+            GameObject swapedMonster= Instantiate(SelectedMonster, Selected_SwapPoint.position,rotation);
             EnemyCounter++;
-          
+
+            if (SelectedMonster.name == "Bat_Level_1")//当怪物为蝙蝠时 y减少
+            {
+                float newY = Selected_SwapPoint.transform.position.y - 0.4f;
+                Selected_SwapPoint.position = new Vector3(Selected_SwapPoint.position.x, newY, Selected_SwapPoint.position.z);
+            }
+            Destroy(swapedMonster,DestroyTime);//摧毁游戏对象
+
+
         }
         else
         {
             Debug.LogWarning("bug!");
         }
        
+    }
+    private void DestroyMonster()
+    {
+        
     }
 }
