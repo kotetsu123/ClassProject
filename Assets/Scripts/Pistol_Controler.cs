@@ -5,6 +5,9 @@ using UnityEngine;
 public class Pistol_Controler : MonoBehaviour
 {
     public Camera customCamera;
+    public float rotationSpeed = 2.0f;
+    public float moveSpeed = 5.0f;
+    public Transform target;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,8 +17,8 @@ public class Pistol_Controler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        pistolMovement();
-        //pistolRayMovement();
+        //pistolMovement();
+        PistolRayMovement();
     }
     private void pistolMovement()
     {
@@ -28,14 +31,16 @@ public class Pistol_Controler : MonoBehaviour
         transform.rotation = Quaternion.Euler(0,angle ,0);
 
     }
-    private void pistolRayMovement()
+    private void PistolRayMovement()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
-        if(Physics.Raycast(ray,out hit))
+        Debug.DrawRay(ray.origin,ray.direction,Color.red);
+        if(Physics.Raycast(ray,out hit))//需要碰撞体！也就是说只有面对怪物的时候武器才会转动。
         {
-            Vector3 targetPosition = hit.point;
-            transform.LookAt(targetPosition);
+            Vector3 targetDirection = hit.point-target.position;
+            Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);    
         }
         
     }
