@@ -8,6 +8,11 @@ public class Pistol_Controler : MonoBehaviour
     public float rotationSpeed = 2.0f;
     public float moveSpeed = 5.0f;
     public Transform target;
+    public float playerSocre = 0;
+
+    //µ¥Àý
+   // private static Pistol_Controler instance;
+   // public static Pistol_Controler Instance { get => instance; set => instance = value; }
     // Start is called before the first frame update
     void Start()
     {

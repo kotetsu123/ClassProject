@@ -12,6 +12,10 @@ public class Monster_Controler : MonoBehaviour
     public int DestroyTime = 5;//摧毁间隙
     
 
+    //单例
+    private static Monster_Controler instance;
+    public static Monster_Controler Instance { get => instance; set => instance = value; }
+
     private GameObject Targetcounter;
     private int EnemyCounter = 0;//怪物计数器
     // Start is called before the first frame update
@@ -65,8 +69,9 @@ public class Monster_Controler : MonoBehaviour
         }
        
     }
-    private void DestroyMonster()
+    public  void DestroyMonster()
     {
-        
+        Destroy(gameObject);
+      
     }
 }

@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 7604678114347250241}
   - component: {fileID: 7604678114340616097}
   - component: {fileID: 7604678114347378885}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Ghost_Lv1
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -77,7 +77,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7604678114347250243}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: GhostControl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -110,7 +110,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7604678114347250245}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: HeadControl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -141,7 +141,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7604678114347250247}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: HeadJoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -173,7 +173,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7604678114347250249}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: HeadTipJoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -205,7 +205,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7604678114347250251}
   - component: {fileID: 7604678114333811553}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: LV1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -293,7 +293,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7604678114347250253}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: MESH
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -325,7 +325,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7604678114347250255}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: RIG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -357,7 +357,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7604678114347250257}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: RootControl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -390,7 +390,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7604678114347250259}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: RootJoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -423,7 +423,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7604678114347250261}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: TailControl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -454,7 +454,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7604678114347250263}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: TailJoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
