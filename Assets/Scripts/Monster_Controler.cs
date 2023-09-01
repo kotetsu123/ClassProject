@@ -69,9 +69,5 @@ public class Monster_Controler : MonoBehaviour
         }
        
     }
-    public  void DestroyMonster()
-    {
-        Destroy(gameObject);
-      
-    }
+   
 }

@@ -9,11 +9,22 @@ public class Pistol_Controler : MonoBehaviour
     public float moveSpeed = 5.0f;
     public Transform target;
     public float playerSocre = 0;
+    public Animation pistolAni;
+
 
     //µ¥Àý
-   // private static Pistol_Controler instance;
-   // public static Pistol_Controler Instance { get => instance; set => instance = value; }
-    // Start is called before the first frame update
+    private static Pistol_Controler instance;
+    public static Pistol_Controler Instance { get => instance; set => instance = value; }
+
+    private Bullet_Controler bulletcontrol;
+    
+
+    private void Awake()
+    {
+        Instance = this;
+        pistolAni = GetComponent<Animation>();
+        bulletcontrol = GetComponent<Bullet_Controler>();
+    }
     void Start()
     {
         
@@ -24,6 +35,11 @@ public class Pistol_Controler : MonoBehaviour
     {
         //pistolMovement();
         PistolRayMovement();
+        /*if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            pistolAni.Play("Grip|Fire");
+            bulletcontrol.Shoot();
+        }*/
     }
     private void pistolMovement()
     {

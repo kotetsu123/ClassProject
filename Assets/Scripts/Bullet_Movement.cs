@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Bullet_Movement : MonoBehaviour
 {
     // Start is called before the first frame update
     public float moveSpeed = 20.0f;
-    public float playerScore;
+    /*public float playerScore;
+    public Text scoreText ;*/
     
 
     
@@ -15,6 +17,8 @@ public class Bullet_Movement : MonoBehaviour
     void Update()
     {
         Movement();
+        //PlayerSocre();
+        //Debug.Log(playerScore);
         
     }
     private void Movement()
@@ -46,9 +50,12 @@ public class Bullet_Movement : MonoBehaviour
         if (other.CompareTag("Monster"))
         {
             Destroy(gameObject);
+            
             Destroy(other.gameObject);
-            playerScore++;
-            Debug.Log(playerScore);
+            //playerScore++;
+            Pistol_Controler.Instance.playerSocre++;
+            Debug.Log(Pistol_Controler.Instance.playerSocre);
+            
         }
         else if (other.CompareTag("BackGround"))
         {
@@ -56,4 +63,8 @@ public class Bullet_Movement : MonoBehaviour
         }
         
     }
+   /* private void PlayerSocre()
+    {
+        scoreText.text = "Score:" + playerScore;
+    }*/
 }
