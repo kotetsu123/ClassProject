@@ -10,15 +10,16 @@ public class Monster_Controler : MonoBehaviour
     public int MaxNumOfMonster = 10;//最大怪物数量
     public float RebotTime = 3.0f;//生成间隔
     public int DestroyTime = 5;//摧毁间隙
-    public Animation monsterAni=null;
-    public string[] monsterAniClips;
+    //public Animation monsterAni=null;
+    //public string[] monsterAniClips;
     
     public enum MonsterType
     {
         bat,
         ghost,
         rabbit,
-        slime
+        slime,
+        none
     }
     public MonsterType monsterType;
 
