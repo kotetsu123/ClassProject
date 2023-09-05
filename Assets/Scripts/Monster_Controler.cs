@@ -10,7 +10,17 @@ public class Monster_Controler : MonoBehaviour
     public int MaxNumOfMonster = 10;//最大怪物数量
     public float RebotTime = 3.0f;//生成间隔
     public int DestroyTime = 5;//摧毁间隙
+    public Animation monsterAni=null;
+    public string[] monsterAniClips;
     
+    public enum MonsterType
+    {
+        bat,
+        ghost,
+        rabbit,
+        slime
+    }
+    public MonsterType monsterType;
 
     //单例
     private static Monster_Controler instance;
@@ -19,8 +29,23 @@ public class Monster_Controler : MonoBehaviour
     private GameObject Targetcounter;
     private int EnemyCounter = 0;//怪物计数器
     // Start is called before the first frame update
+    private void Awake()
+    {
+        Instance = this;
+        
+    }
     void Start()
     {
+       /*monsterAni = GetComponent<Animation>();
+        foreach(string clipName in monsterAniClips)
+        {
+            //构建AnimationClip的路径
+            string clipPath = "Assets/Animation/Animation/" + clipName;
+            //加载AnimationClip
+            AnimationClip animationClip = Resources.Load<AnimationClip>(clipPath);
+
+        }*/
+         
         EnemyCounter = 0;
         InvokeRepeating("CreatEnemy", 0.5f, RebotTime);
         /*if (EnemyCounter == MaxNumOfMonster)

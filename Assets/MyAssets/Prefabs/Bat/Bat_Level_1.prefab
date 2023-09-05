@@ -500,9 +500,6 @@ Animation:
   m_Animation: {fileID: 7400000, guid: 59afa1f2c595d6343b15e945602e1f8f, type: 3}
   m_Animations:
   - {fileID: 7400000, guid: 59afa1f2c595d6343b15e945602e1f8f, type: 3}
-  - {fileID: 7400002, guid: 59afa1f2c595d6343b15e945602e1f8f, type: 3}
-  - {fileID: 7400004, guid: 59afa1f2c595d6343b15e945602e1f8f, type: 3}
-  - {fileID: 7400006, guid: 59afa1f2c595d6343b15e945602e1f8f, type: 3}
   - {fileID: 7400008, guid: 59afa1f2c595d6343b15e945602e1f8f, type: 3}
   m_WrapMode: 0
   m_PlayAutomatically: 1

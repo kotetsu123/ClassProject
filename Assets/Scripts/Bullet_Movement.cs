@@ -9,6 +9,7 @@ public class Bullet_Movement : MonoBehaviour
     public float moveSpeed = 20.0f;
     /*public float playerScore;
     public Text scoreText ;*/
+
     
 
     
@@ -49,9 +50,32 @@ public class Bullet_Movement : MonoBehaviour
     {
         if (other.CompareTag("Monster"))
         {
+
+            switch (Monster_Controler.Instance.monsterType)
+            {
+                case Monster_Controler.MonsterType.bat:
+                    Monster_Controler.Instance.monsterAni = Monster_Controler.Instance.Monster_Prefabs[0].GetComponent<Animation>();
+                    Monster_Controler.Instance.monsterAni.Play("bat_die");
+                 //   Monster_Controler.Instance.monsterAni = null;
+                    Debug.Log(Monster_Controler.Instance.monsterType);
+                    break;
+                case Monster_Controler.MonsterType.ghost:
+                    Monster_Controler.Instance.monsterAni.Play("ghost_die");
+                    Debug.Log(Monster_Controler.Instance.monsterType);
+                    break;
+                case Monster_Controler.MonsterType.rabbit:
+                    Monster_Controler.Instance.monsterAni.Play("rabbit_die");
+                    Debug.Log(Monster_Controler.Instance.monsterType);
+                    break;
+                case Monster_Controler.MonsterType.slime:
+                    Monster_Controler.Instance.monsterAni.Play("slime_die");
+                    Debug.Log(Monster_Controler.Instance.monsterType);
+                    break;
+
+            }
             Destroy(gameObject);
             
-            Destroy(other.gameObject);
+            Destroy(other.gameObject,1.0f);
             //playerScore++;
             Pistol_Controler.Instance.playerSocre++;
             Debug.Log(Pistol_Controler.Instance.playerSocre);
