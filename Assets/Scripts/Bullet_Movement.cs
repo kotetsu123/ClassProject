@@ -64,6 +64,7 @@ public class Bullet_Movement : MonoBehaviour
                             monsterAni.Play("bat_die");
                             // Monster_Controler.Instance.monsterAni.Play("bat_die");
                             //   Monster_Controler.Instance.monsterAni = null;
+
                             Debug.Log(Monster_Controler.Instance.monsterType);
                             break;
                         case Monster_Controler.MonsterType.ghost:
@@ -89,12 +90,15 @@ public class Bullet_Movement : MonoBehaviour
             }
            
             Destroy(gameObject);
-            
+            BoxCollider monsterBoxCollider = other.gameObject.GetComponent<BoxCollider>();
+            monsterBoxCollider.enabled = false;
             Destroy(other.gameObject,1.0f);
+            Monster_Controler.Instance.monsterDead();
             //playerScore++;
+            //Bullet_Controler.Instance.playerScore++;
             Pistol_Controler.Instance.playerSocre++;
             Debug.Log(Pistol_Controler.Instance.playerSocre);
-            
+
         }
         else if (other.CompareTag("BackGround"))
         {

@@ -10,6 +10,7 @@ public class Pistol_Controler : MonoBehaviour
     public Transform target;
     public float playerSocre = 0;
     public Animation pistolAni;
+    public AudioClip pistolAudio;
 
 
     //单例
@@ -56,13 +57,16 @@ public class Pistol_Controler : MonoBehaviour
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
-        Debug.DrawRay(ray.origin,ray.direction,Color.red);
-        if(Physics.Raycast(ray,out hit))//需要碰撞体！也就是说只有面对怪物的时候武器才会转动。
+        Debug.DrawRay(ray.origin, ray.direction, Color.red);
+        if (Physics.Raycast(ray, out hit))//需要碰撞体！也就是说只有面对怪物的时候武器才会转动。
         {
-            Vector3 targetDirection = hit.point-target.position;
+            Vector3 targetDirection = hit.point - target.position;
             Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);    
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
         }
-        
+    }
+    public void PlayFireAudio()
+    {
+        AudioSource.PlayClipAtPoint(pistolAudio, transform.position);
     }
 }

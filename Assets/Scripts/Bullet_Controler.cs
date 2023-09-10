@@ -5,10 +5,17 @@ using UnityEngine;
 public class Bullet_Controler : MonoBehaviour
 {
     public GameObject bulletPrefab;
+    public Pistol_Controler pistolcontroler;
+    
+    
 
 
     private float timeVal=3;//¼ÆÊ±Æ÷
     private float bulletValue = 6;
+    private static Bullet_Controler instance;
+    public static Bullet_Controler Instance { get => instance; set => instance = value; }
+
+
     /*private Animator animator;
 
     private void Start()
@@ -16,10 +23,13 @@ public class Bullet_Controler : MonoBehaviour
         animator = GetComponent<Animator>();
     }*/
 
-
+    private void Start()
+    {
+       
+    }
     private void Update()
     {
-        if (timeVal >= 4)
+        if (timeVal >=1.35f)
         {
             Shoot();
         }
@@ -29,6 +39,7 @@ public class Bullet_Controler : MonoBehaviour
         }
         Reload();
         UpdateAmmoText();
+        UpdateScoreText();
     }
 
     public void Shoot()
@@ -38,7 +49,8 @@ public class Bullet_Controler : MonoBehaviour
             //animator.SetTrigger("Fire");
             Instantiate(bulletPrefab, transform.position, transform.rotation);
             Pistol_Controler.Instance.pistolAni.Play("Grip|Fire");
-            //timeVal = 0;
+            Pistol_Controler.Instance.PlayFireAudio();
+            timeVal = 0;
             bulletValue--;
         }
          
@@ -53,10 +65,12 @@ public class Bullet_Controler : MonoBehaviour
     }
     private void UpdateAmmoText()
     {
-        AmmoUi ammoui=FindObjectOfType<AmmoUi>();
+        AmmoUi ammoui = FindObjectOfType<AmmoUi>();
+        
         if (ammoui != null)
         {
             ammoui.ammoText.text = "Ammo:" + bulletValue.ToString();
+            
         }
         if (bulletValue == 0)
         {
@@ -64,4 +78,18 @@ public class Bullet_Controler : MonoBehaviour
         }
        
     }
+    private void UpdateScoreText()
+    {
+        scoreUI scoreUi=FindObjectOfType<scoreUI>();
+       
+        if (scoreUi != null)
+        {
+            scoreUi.scoreText.text = "Score:" + Pistol_Controler.Instance.playerSocre.ToString();
+        }
+        else
+        {
+            Debug.Log("Error!");
+        }
+    }
+    
 }
