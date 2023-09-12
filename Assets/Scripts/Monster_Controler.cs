@@ -101,7 +101,7 @@ public class Monster_Controler : MonoBehaviour
         }
        
     }*/
-    private IEnumerator creatEnemy()
+    public IEnumerator creatEnemy()
     {
         while (EnemyCounter <= MaxNumOfMonster)
         {
@@ -135,5 +135,9 @@ public class Monster_Controler : MonoBehaviour
     {
         AudioSource.PlayClipAtPoint(monsterDieAudio, transform.position);
     }
-   
+    public void OnCon()
+    {
+        StopAllCoroutines();
+        StartCoroutine("creatEmemy");
+    }
 }
