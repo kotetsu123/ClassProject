@@ -6,12 +6,13 @@ public class Bullet_Controler : MonoBehaviour
 {
     public GameObject bulletPrefab;
     public Pistol_Controler pistolcontroler;
-    
-    
+    public  float bulletValue = 6;
+
+
 
 
     private float timeVal=3;//¼ÆÊ±Æ÷
-    private float bulletValue = 6;
+   
     private static Bullet_Controler instance;
     public static Bullet_Controler Instance { get => instance; set => instance = value; }
 
@@ -22,6 +23,10 @@ public class Bullet_Controler : MonoBehaviour
     {
         animator = GetComponent<Animator>();
     }*/
+    private void Awake()
+    {
+        instance = this;
+    }
 
     private void Start()
     {

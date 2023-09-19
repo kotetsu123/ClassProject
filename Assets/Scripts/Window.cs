@@ -12,7 +12,15 @@ public class Window : MonoBehaviour
     public Button quitGame;
     public GameObject haveButtonPanel;
     public GameObject noButtonPanel;
-    
+
+    private static Window instance;
+    public static Window Instance { get => instance; set => instance = value; }
+
+    private void Awake()
+    {
+        Instance = this;
+    }
+
     // Start is called before the first frame update
     void Start()
     {

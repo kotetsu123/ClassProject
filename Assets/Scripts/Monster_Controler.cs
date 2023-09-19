@@ -11,8 +11,12 @@ public class Monster_Controler : MonoBehaviour
     public float RebotTime = 3.0f;//生成间隔
     public int DestroyTime = 5;//摧毁间隙
     public AudioClip monsterDieAudio;
+    public Window window;
+    
     //public Animation monsterAni=null;
     //public string[] monsterAniClips;
+
+    private List<GameObject> monsterList= new List<GameObject> ();
     
     public enum MonsterType
     {
@@ -111,6 +115,12 @@ public class Monster_Controler : MonoBehaviour
                 int randomIndex_Monster = Random.Range(0, Monster_Prefabs.Length);//随机怪物
                 int randomIndex_SwapPoint = Random.Range(0, SwapPoint.Length);//随机位置
                 Transform selected_SwapPoint = SwapPoint[randomIndex_SwapPoint];//生成的位置为随机的位置
+                while (!IsSpawnPointAvailable(selected_SwapPoint))
+                {
+                    //生成新的生成点
+                    randomIndex_SwapPoint = Random.Range(0, SwapPoint.Length);
+                    selected_SwapPoint=SwapPoint[randomIndex_SwapPoint];
+                }
                 GameObject selectedMonster = Monster_Prefabs[randomIndex_Monster];//生成选中的随机怪物
                 Quaternion rotation=Quaternion.Euler(0, 180f, 0);//旋转生成的怪物的面向
                 Vector3 originalPosition=selected_SwapPoint.position;//存储怪物的生成点
@@ -124,8 +134,11 @@ public class Monster_Controler : MonoBehaviour
                 }
 
                 GameObject swapedMonster = Instantiate(selectedMonster, selected_SwapPoint.position,rotation);//实例化新的游戏对象
+                monsterList.Add(swapedMonster);
                 selected_SwapPoint.position = originalPosition;//将原先的坐标重新赋值给selected_SwapPoint 上
                 Destroy(swapedMonster, DestroyTime);//时间到了就销毁物体
+                monsterList.Remove(swapedMonster);
+                
 
             }
         }
@@ -135,9 +148,35 @@ public class Monster_Controler : MonoBehaviour
     {
         AudioSource.PlayClipAtPoint(monsterDieAudio, transform.position);
     }
-    public void OnCon()
+    public void OnNewGame()
     {
         StopAllCoroutines();
-        StartCoroutine("creatEmemy");
+        EnemyCounter = 0;
+        Pistol_Controler.Instance.playerSocre = 0;
+        /* Window.Instance.haveButtonPanel.SetActive(false);
+         Window.Instance.noButtonPanel.SetActive(false);*/
+        Window.Instance.ContinueGame();
+        Bullet_Controler.Instance.bulletValue = 6;
+        foreach(GameObject monster in monsterList)
+        {
+            Destroy(monster);
+        }
+        monsterList.Clear();
+        StartCoroutine("creatEnemy");
+    }
+    public bool IsSpawnPointAvailable(Transform spawnPoint)  //检查生成点是否可以使用
+    {
+        
+        foreach(GameObject monster in monsterList)
+        {
+            //获取怪物位置
+            Vector3 monsterPosition = monster.transform.position;
+            float overLapValue = 1.0f;//距离阈值，即小于该数重叠。
+            if (Vector3.Distance(spawnPoint.position, monsterPosition) < overLapValue)
+            {
+                return false;//生成点不可用
+            }
+        }
+        return true;
     }
 }
